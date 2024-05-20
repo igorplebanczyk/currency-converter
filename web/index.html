@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link href="style.css" rel="stylesheet">
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript" src="/main.js"></script>
+</head>
+<body>
+    <h1 class="title">Currency Converter</h1>
+    <div class="container">
+        <div class="currency-selector">
+            <input class="currency-selector__modifier-input" id="modifier" type="number">
+            <select class="currency-selector__select" id="currency1"></select>
+        </div>
+        <button class="get-result-button" onclick="getExchangeRate(document.getElementById('currency1').value, document.getElementById('currency2').value)"><img class="get-result-button__image" src="img/image.png" alt="exchange icon"></button>
+        <div class="currency-selector">
+            <div class="result-div" id="result"></div>
+            <select class="currency-selector__select" id="currency2"></select>
+        </div>
+    </div>
+</body>
+</html>
