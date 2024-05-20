@@ -6,20 +6,25 @@
     <title>Currency Converter</title>
     <link href="style.css" rel="stylesheet">
     <script type="text/javascript" src="/eel.js"></script>
-    <script type="text/javascript" src="/main.js"></script>
+    <script type="text/javascript" src="/main.js" defer></script>
 </head>
 <body>
     <h1 class="title">Currency Converter</h1>
     <div class="container">
         <div class="currency-selector">
-            <input class="currency-selector__modifier-input" id="modifier" type="number">
+            <input class="currency-selector__modifier-input" id="modifier" type="number" value="1">
             <select class="currency-selector__select" id="currency1"></select>
         </div>
-        <button class="get-result-button" onclick="getExchangeRate(document.getElementById('currency1').value, document.getElementById('currency2').value)"><img class="get-result-button__image" src="img/image.png" alt="exchange icon"></button>
+        <button class="get-result-button" onclick="getExchangeRate(document.getElementById('currency1').value, document.getElementById('currency2').value, document.getElementById('modifier').value)"><img class="get-result-button__image" src="img/image.png" alt="exchange icon"></button>
+        <button class="switch-button">Switch</button>
         <div class="currency-selector">
             <div class="result-div" id="result"></div>
             <select class="currency-selector__select" id="currency2"></select>
         </div>
+    </div>
+    <div class="update-time-container">
+        <div class="update-time" id="last-updated"></div>
+        <div class="update-time" id="next-update"></div>
     </div>
 </body>
 </html>
