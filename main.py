@@ -1,11 +1,20 @@
-from CurrencyData import Currency, ExchangeData
+import eel
+from exchange import ExchangeData, getAllSupportedCurrencies
+
+# Initialize the Eel library
+eel.init('web')
+
+@eel.expose
+def getAllSupportedCurrenciesExposed():
+    return getAllSupportedCurrencies()
+
+@eel.expose
+def getExchangeDataExposed(currency1, currency2, amount):
+    exchange_data = ExchangeData(currency1, currency2, amount)
+    return (exchange_data.getExchangeRate(), exchange_data.getLatestUpdate(), exchange_data.getNextUpdate())
 
 def main():
-    currency1 = Currency("USD")
-    currency2 = Currency("EUR")
-    exchangeData = ExchangeData(currency1, currency2)
-    exchangeRate = exchangeData.getExchangeRate()
-    print(f"1 {currency1.currencyCode} = {exchangeRate} {currency2.currencyCode}")
+    eel.start('index.html', size=(800, 600), mode='opera', port=7000)
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link href="style.css" rel="stylesheet">
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript" src="/main.js" defer></script>
+</head>
+<body>
+    <h1 class="currency-converter__title">Currency Converter</h1>
+    <div class="currency-converter__container">
+        <div class="currency-converter__selector">
+            <input class="currency-converter__input" id="modifier" type="number" value="1">
+            <select class="currency-converter__select" id="currency1"></select>
+        </div>
+        <div class="currency-converter__buttons">
+            <button class="currency-converter__button currency-converter__button--get-result" onclick="getExchangeRate(document.getElementById('currency1').value, document.getElementById('currency2').value, document.getElementById('modifier').value)">
+                <img class="currency-converter__button-image" src="img/convert.png" alt="convert icon">
+            </button>
+            <button class="currency-converter__button currency-converter__button--switch">
+                <img class="currency-converter__button-image" src="img/switch.png" alt="switch icon">
+            </button>
+        </div>
+        <div class="currency-converter__selector">
+            <div class="currency-converter__result" id="result"></div>
+            <select class="currency-converter__select" id="currency2"></select>
+        </div>
+    </div>
+    <div class="currency-converter__update-times">
+        <div class="currency-converter__update-time" id="last-updated"></div>
+        <div class="currency-converter__update-time" id="next-update"></div>
+    </div>
+</body>
+</html>
