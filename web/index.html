@@ -9,22 +9,28 @@
     <script type="text/javascript" src="/main.js" defer></script>
 </head>
 <body>
-    <h1 class="title">Currency Converter</h1>
-    <div class="container">
-        <div class="currency-selector">
-            <input class="currency-selector__modifier-input" id="modifier" type="number" value="1">
-            <select class="currency-selector__select" id="currency1"></select>
+    <h1 class="currency-converter__title">Currency Converter</h1>
+    <div class="currency-converter__container">
+        <div class="currency-converter__selector">
+            <input class="currency-converter__input" id="modifier" type="number" value="1">
+            <select class="currency-converter__select" id="currency1"></select>
         </div>
-        <button class="get-result-button" onclick="getExchangeRate(document.getElementById('currency1').value, document.getElementById('currency2').value, document.getElementById('modifier').value)"><img class="get-result-button__image" src="img/image.png" alt="exchange icon"></button>
-        <button class="switch-button">Switch</button>
-        <div class="currency-selector">
-            <div class="result-div" id="result"></div>
-            <select class="currency-selector__select" id="currency2"></select>
+        <div class="currency-converter__buttons">
+            <button class="currency-converter__button currency-converter__button--get-result" onclick="getExchangeRate(document.getElementById('currency1').value, document.getElementById('currency2').value, document.getElementById('modifier').value)">
+                <img class="currency-converter__button-image" src="img/convert.png" alt="convert icon">
+            </button>
+            <button class="currency-converter__button currency-converter__button--switch">
+                <img class="currency-converter__button-image" src="img/switch.png" alt="switch icon">
+            </button>
+        </div>
+        <div class="currency-converter__selector">
+            <div class="currency-converter__result" id="result"></div>
+            <select class="currency-converter__select" id="currency2"></select>
         </div>
     </div>
-    <div class="update-time-container">
-        <div class="update-time" id="last-updated"></div>
-        <div class="update-time" id="next-update"></div>
+    <div class="currency-converter__update-times">
+        <div class="currency-converter__update-time" id="last-updated"></div>
+        <div class="currency-converter__update-time" id="next-update"></div>
     </div>
 </body>
 </html>

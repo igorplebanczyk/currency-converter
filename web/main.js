@@ -1,5 +1,3 @@
-let updateTimesContainer; // Declare the update times container variable globally
-
 function loadSupportedCurrencies() {
     eel.getAllSupportedCurrenciesExposed()(function(result) {
         // Process result (e.g., display in dropdown)
@@ -25,33 +23,14 @@ function loadSupportedCurrencies() {
     });
 }
 
-
 function getExchangeRate(currency1, currency2, amount) {
     eel.getExchangeDataExposed(currency1, currency2, amount)(function(result) {
         // Display exchange rate in the app
         document.getElementById("result").innerText = result[0];
 
         // Display last and next update times
-        if (!updateTimesContainer) {
-            updateTimesContainer = document.createElement("div");
-            updateTimesContainer.className = "update-time-container";
-            document.body.appendChild(updateTimesContainer);
-        } else {
-            // Clear previous content
-            updateTimesContainer.innerHTML = "";
-        }
-
-        latestUpdateTime = document.createElement("div");
-        latestUpdateTime.className = "update-time";
-
-        nextUpdateTime = document.createElement("div");
-        nextUpdateTime.className = "update-time";
-
-        updateTimesContainer.appendChild(latestUpdateTime);
-        updateTimesContainer.appendChild(nextUpdateTime);
-
-        latestUpdateTime.innerText = `Last updated: ${result[1]}`;
-        nextUpdateTime.innerText = `Next update: ${result[2]}`;
+        document.getElementById("last-updated").innerText = `Last updated: ${result[1]}`;
+        document.getElementById("next-update").innerText = `Next update: ${result[2]}`;
     });
 }
 
@@ -69,8 +48,8 @@ function switchCurrencies() {
     currency2Select.dispatchEvent(new Event('change'));
 }
 
-// Load supported currencies and attach event listener to the switch button when the page is loaded
+// Load supported currencies when the page is loaded
 window.onload = function() {
     loadSupportedCurrencies();
-    document.querySelector('.switch-button').addEventListener('click', switchCurrencies)
+    document.querySelector('.currency-converter__button--switch').addEventListener('click', switchCurrencies);
 }
