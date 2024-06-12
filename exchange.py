@@ -13,15 +13,35 @@ def getAllSupportedCurrencies():
             raise Exception(f"Failed to fetch data: {data['error']}")       
     
 class ExchangeData():
+    __cache = {}
+
     def __init__(self, currency1, currency2, amount):
         self.currency1 = currency1
         self.currency2 = currency2
         self.amount = amount
 
         self.__url = f"https://v6.exchangerate-api.com/v6/{API_KEY}/pair/{self.currency1}/{self.currency2}/{self.amount}"
-        self.response = requests.get(self.__url)
-        self.response.raise_for_status()
-        self.data = self.response.json()
+        
+        if len(ExchangeData.__cache) > 100:
+            self.clearCache()
+
+        if self.__url in ExchangeData.__cache:
+            self.readFromCache()
+        else:
+            self.response = requests.get(self.__url)
+            self.response.raise_for_status()
+            self.data = self.response.json()
+            self.writeToCache()
+
+    def readFromCache(self):
+        self.data = ExchangeData.__cache[self.__url]
+
+    def writeToCache(self):
+        ExchangeData.__cache[self.__url] = self.data
+
+    def clearCache(self):
+        ExchangeData.__cache = {}
+
     
     def getExchangeRate(self):
         if self.data["result"] == "success":
