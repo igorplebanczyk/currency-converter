@@ -25,10 +25,7 @@ function loadSupportedCurrencies() {
 
 function getExchangeRate(currency1, currency2, amount) {
     eel.getExchangeDataExposed(currency1, currency2, amount)(function(result) {
-        // Display exchange rate in the app
         document.getElementById("result").innerText = result[0];
-
-        // Display last and next update times
         document.getElementById("last-updated").innerText = `Last updated: ${result[1]}`;
         document.getElementById("next-update").innerText = `Next update: ${result[2]}`;
     });
@@ -48,7 +45,6 @@ function switchCurrencies() {
     currency2Select.dispatchEvent(new Event('change'));
 }
 
-// Load supported currencies when the page is loaded
 window.onload = function() {
     loadSupportedCurrencies();
     document.querySelector('.currency-converter__button--switch').addEventListener('click', switchCurrencies);
